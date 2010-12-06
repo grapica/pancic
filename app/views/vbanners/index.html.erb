@@ -1,0 +1,32 @@
+<h1>Listing vbanners</h1>
+<% if @vbanners_pages.page_count > 1 %>
+  <p class="pagination">Pages: <strong>
+    <%= pagination_links @vbanners_pages, :params => params %>
+  </strong></p>
+<% end %>
+<table>
+  <tr>
+    <th>image</th>
+  </tr>
+
+<% @vbanners.each do |vbanner| %>
+  <tr>
+	<%if vbanner.link!='' %>
+		<td><%=link_to(image_tag(vbanner.vimage.url, :border => 0, :width => '130'), vbanner.link)%></td>
+	<% else %>
+		<td><%= image_tag(vbanner.vimage.url, :border => 0, :width => '130') %></td>
+	<% end %>
+    <td><%= link_to 'Show', vbanner %></td>
+    <td><%= link_to 'Edit', edit_vbanner_path(vbanner) %></td>
+    <td><%= link_to 'Destroy', vbanner, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<% if @vbanners_pages.page_count > 1 %>
+  <p class="pagination">Pages: <strong>
+    <%= pagination_links @vbanners_pages, :params => params %>
+  </strong></p>
+<% end %>
+<br />
+
+<%= link_to 'New vbanner', new_vbanner_path %>

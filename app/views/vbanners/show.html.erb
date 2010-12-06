@@ -1,0 +1,12 @@
+<p>
+  <b>Link:</b>
+  <%=h @vbanner.link %>
+</p>
+<p>
+  <b>Banner:</b>
+  <%= image_tag @vbanner.vimage.url %>
+</p>
+
+
+<%= link_to 'Edit', edit_vbanner_path(@vbanner) %> |
+<%= link_to 'Back', vbanners_path %>

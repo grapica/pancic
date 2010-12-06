@@ -1,0 +1,34 @@
+<h1>Listing hbanners</h1>
+<% if @hbanners_pages.page_count > 1 %>
+  <p class="pagination">Pages: <strong>
+    <%= pagination_links @hbanners_pages, :params => params %>
+  </strong></p>
+<% end %>
+<table>
+  <tr>
+    <th>image</th>
+  </tr>
+
+
+<% @hbanners.each do |hbanner| %>
+  <tr>
+	<%if hbanner.link!='' %>
+		<td><%=link_to(image_tag(hbanner.himage.url, :border => 0, :height => '80'), hbanner.link)%></td>
+	<% else %>
+			<td><%= image_tag(hbanner.himage.url, :border => 0, :height => '80') %></td>
+	<% end %>
+	
+    <td><%= link_to 'Show', hbanner %></td>
+    <td><%= link_to 'Edit', edit_hbanner_path(hbanner) %></td>
+    <td><%= link_to 'Destroy', hbanner, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<% if @hbanners_pages.page_count > 1 %>
+  <p class="pagination">Pages: <strong>
+    <%= pagination_links @hbanners_pages, :params => params %>
+  </strong></p>
+<% end %>
+<br />
+
+<%= link_to 'New hbanner', new_hbanner_path %>

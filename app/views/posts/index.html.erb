@@ -1,0 +1,68 @@
+<% if params[:top] %>
+	<div id="naslov"><h1 >Top Ponude</h1></div>
+<% else %>
+	<% if params[:search] %>
+		<div id="naslov"><h1 >Rezultati pretrage: <i>"<%= params[:search]%>"</i></h1></div>
+	<% else %>
+		<div id="naslov"><h1 >Spisak Oglasa</h1></div>
+	<% end %>
+<% end %>
+	<% if @posts_pages.page_count > 1 %>
+		<p class="pagination">Pages: <strong>
+			<%= pagination_links @posts_pages, :params => params %>
+		</strong></p>
+	<% end %>
+	
+	<div id="addrow">
+		<% @posts.each do |post| %>
+			<div id="rowpart">
+				<div id="partinside1">
+					<div id="partinside2">
+						<br />
+						<a href=<%=h post_path(post)%>>
+						<% if post.post_images.last %>
+							<%= image_tag post.post_images.last.image.url, :height => '90' %>
+						<% else %>
+							<%= image_tag 'no-photo.gif', :height => '90' %>
+						<% end %>
+						</a><br />
+						
+						<% if is_logged_in? %>
+							<br />
+							<%= link_to 'Edit', edit_post_path(post) %>
+							<%= link_to 'Destroy', post_path(post), :confirm => 'Are you sure?', :method => :delete %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+			<div id="rowextension">
+				<div id="partinside1">
+					<div id="partinside2" style="text-align:left;">
+						<div style="height:68%">
+						<%= link_to "<h1>#{post.title}</h1>", post_path(post)%>
+						<%= truncate(post.description, 310)%>
+						</div>
+						<div style="padding: 0 10px; "><hr />
+						<p style="margin: 0; padding: 10px 0;">
+						<strong style="font-size:1.2em;">Datum: <%=h post.created_at.to_s(:article)-%></strong>
+						<%if post.place!="" %>
+						<br /><strong style="font-size:1.2em;">Mesto: <%=h post.place-%>
+						<% end %>
+						</strong></p>
+						</div>
+					</div>	
+				</div>
+			</div>
+			
+			
+		<% end %>
+	</div>
+
+<div style="clear:both">
+	<% if @posts_pages.page_count > 1 %>
+		<p class="pagination">Pages: <strong>
+			<%= pagination_links @posts_pages, :params => params %>
+		</strong></p>
+	<% end %>
+	
+</div>

@@ -1,0 +1,33 @@
+
+		<ul>
+			<li><%= 
+				link_to_unless_current '<span>Home</span>', '/' do 
+					link_to '<span>Home</span>', '/', :class =>"current" 
+			 end 
+			%></li>
+			<li><%= 
+				link_to_unless_current '<span>Top Ponude</span>', posts_path(:top => 1) do 
+					link_to '<span>Top Ponude</span>', posts_path(:top => 1), :class =>"current" 
+			 end 
+			%></li>
+			<li><%= 
+				link_to_unless_current '<span>Korisna Pitanja</span>', questions_path do 
+					link_to '<span>Korisna Pitanja</span>', questions_path, :class =>"current" 
+			 end 
+			%></li>
+			<% @areas = Area.all %>
+			<% @areas.each do |area| %>
+				<% if area.menu == true %>
+					<% if controller_name=="categories" and action_name=="index" and area.id==@area.id %>
+						<%= link_to '<span>'+area.title+'</span>', area_path(:id => area.id), :class =>"current" %>
+					<% else %>
+						<%= link_to '<span>'+area.title+'</span>', area_path(:id => area.id) %>
+					<% end %>
+				<% end %>
+			<% end %>       
+			<% if controller_name=="contact" and action_name=="index" %>
+				<li><a href="/contact" class='current'><span>Kontakt</span></a></li>
+			<% else %>
+				<li><%= link_to '<span>Kontakt</span>', :controller => "contact", :action=> "index" %></li>
+			<% end %>
+		</ul>	

@@ -1,0 +1,33 @@
+
+<div id="addrow">
+	<% posts.each do |post| %>
+		<div id="rowpart">
+			<div id="partinside1">
+				<% if post.top==true and condition%>
+					<div id="partinside2" style="border: 1px solid red;">
+				<% else %>
+					<div id="partinside2" >
+				<% end %>
+					<br />
+					<a href=<%=h post_path(post)%>>
+					<% if post.post_images.last %>
+						<%= image_tag post.post_images.last.image.url, :height => '90', :title => post.title %>
+					<% else %>
+						<%= image_tag 'no-photo.gif', :height => '90' %>
+					<% end %>
+					</a><br />
+					<%= truncate(post.title,20)%>
+					<% if is_logged_in? %>
+					<br />
+					<%= link_to 'Edit', edit_post_path(post) %>
+					<%= link_to 'Destroy', post_path(post), :confirm => 'Are you sure?', :method => :delete %>
+		
+	<% end %>
+				</div>
+			</div>
+		</div>
+		
+	<% end %>
+</div>
+<div style="clear:both">
+</div>

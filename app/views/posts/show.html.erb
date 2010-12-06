@@ -1,0 +1,65 @@
+<div id="naslov"><h1 ><%= link_to  @post.category.area.title, area_path(:id => @post.category.area.id) %>&nbsp;-&nbsp;<%= link_to  @post.category.title, area_category_path(:area_id => @post.category.area.id, :id => @post.category.id) %></h1></div>
+
+<div><h1 ><%= @post.title%></h1></div><div><hr />
+	<div style="width:50%;  float:left">
+		<%=h @post.description %>
+	</div>
+	<div style="width:50%; float:left">
+		<strong>Datum Postavljanja: <%=h @post.created_at.to_s(:article)-%></strong><br />
+		<% if @post.owner!="" or @post.phone1!="" or @post.phone1!="" or @post.place!="" or @post.email!="" %>
+			<b>Podaci O Vlasniku:</b>
+			<% if @post.owner!="" %>
+				<p>
+					<b>Ime i Prezime:</b>
+					<%=h @post.owner %>
+				</p>
+			<% end %>
+			<% if @post.phone1!="" %>
+				<p>
+					<b>Broj Telefona 1:</b>
+					<%=h @post.phone1 %>
+				</p>
+			<% end %>
+			<% if @post.phone2!="" %>
+				<p>
+					<b>Broj Telefona 2:</b>
+					<%=h @post.phone2 %>
+				</p>
+			<% end %>
+			<% if @post.place!="" %>
+				<p>
+					<b>Mesto:</b>
+					<%=h @post.place %>
+				</p>
+			<% end %>
+			<% if @post.email!="" %>
+				<p>
+					<b>Elektronska Po&scaron;ta:</b>
+					<%=h @post.email %>
+				</p>
+			<% end %>
+		<% else %>
+			<b><%= link_to "Za detalje o ovom oglasu se mo&#382;ete informisati u Agenciji Pan&#269;i&#263;", :controller => "contact", :action=> "index" %></b>
+		<% end %>
+	</div>
+</div>
+<% if @post_images.size!=0%>
+	<div style="clear:both; text-align:center;">
+	<br /><h3 style="text-align:left">Fotografije:</h3>
+	<% @post_images.each do |post_image| %>
+	
+		<br /><%= image_tag post_image.image.url, :height => '400' %><br />
+		<b><%= post_image.title%></b>
+		<% if is_logged_in? %>
+			<br /><%= link_to 'Destroy', post_post_image_path(:post_id => @post, :id => post_image.id), :confirm => 'Are you sure?', :method => :delete %><br />
+		<% end %>
+		<hr />
+	<% end %>
+<% end %>
+<% if is_logged_in? %>
+	<%= link_to 'New image', new_post_post_image_path(:post_id => @post) %> |
+
+	<%= link_to 'Edit Post', edit_post_path(@post) %> |
+<% end %>
+<%= link_to 'Nazad', :back %>
+</div>

@@ -1,0 +1,30 @@
+<div>
+	<div style="width:50%; float:left">
+		<%= image_tag "../images/lokal.jpg", :height => '200' %>
+	</div>
+	<div style="width:50%; float:left">
+			<h2>Kontakt informacije</h2>
+				<b>Adresa: </b>Drago&scaron;eva lok.10, 18300 Pirot<br />
+				<b>Telefoni: </b> 010/321-017, 010/332-075 <br />
+				<b>Fax: </b> 010/332-075<br />
+				<b>Elektronska Po&scaron;ta&nbsp;: </b> agencijapancic@gmail.com <br />
+
+
+	</div>
+</div>
+<div style="clear:both">
+<% form_for :email, :url => { :controller => 'contact', :action => 'send_mail' }, :class => "contacto" do |f| %>
+	<fieldset>
+	<legend>Kontakt Formular</legend>
+    <p><%= f.label :"Ime i Prezime:" %>
+    <%= f.text_field :name, :size => 60 %></p>
+    <p><%= f.label :"Elektronska Po&scaron;ta&nbsp;[e-mail]:" %>
+    <%= f.text_field :address, :size => 60 %></p>
+    <p><%= f.label :"Naslov Poruke:" %>
+    <%= f.text_field :subject, :size => 60 %></p>
+    <p><%= f.label :"Sadrzaj Poruke:" %>
+    <%= f.text_area :body, :rols => 10, :cols => 60 %></p>
+    <p><%= submit_tag "Posalji Podatke "%></p>
+	</fieldset>
+<% end %>
+</div>

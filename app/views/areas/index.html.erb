@@ -1,0 +1,56 @@
+<div id="naslov"><h1 >TOP PONUDE</h1></div>
+<%= render :partial => 'small_view', :locals =>{ :posts => @topposts, :condition => false} %>
+<div id="naslov"><h1 >SPISAK OBLASTI</h1></div>
+<div style="clear:both;">
+<%number=1%>
+<% @areas.each do |area| %>
+	<div 
+	<%if number==1%>
+		style="width:49.999%; float:left;clear:both">
+		<% number= number+1%>
+	<% else%>
+		<% number= number-1%>
+		style="width:49.999%; float:left">
+	<% end %>
+		<div id="oblasti">
+			<% @categories=Category.find :all, :conditions => ['area_id = ?', area.id]%>
+			<% post_count=0 %>
+			<% @categories.each do |category| %>
+				<% post_count=post_count+category.posts_count %>
+			<% end %>
+			<br /><%= link_to "<h1>#{area.title}&nbsp;(#{post_count})</h1>", area %>
+			<hr />
+			<%=h area.description %>
+			<% if is_logged_in? %>
+				<br />
+				<%= link_to 'Edit', edit_area_path(area) %>
+				<%= link_to 'Destroy', area, :confirm => 'Are you sure?', :method => :delete %>
+			<% end %>
+			
+		</div>
+		
+		<div style="width:100%; float:left;">
+			<% i=0 %>
+			<% @categories.each do |category| %>
+				<%if i!=0%>
+					,&nbsp;
+				<% end %>
+				<%= link_to "#{category.title}", area_category_path(:area_id => area,:id => category) %>
+				<% i=i+1%>
+			<% end %>
+		</div>
+	</div>
+<% end %>
+</div>
+
+
+ <div style="clear:both">              
+			
+				<br /><hr /><br />
+				<% if is_logged_in? %>
+					<%= link_to 'New area', new_area_path %>
+				<% end %>
+                            
+</div>
+<br /><div id="naslov"><h1 >ZADNJE DODATI</h1></div>
+<%= render :partial => 'small_view', :locals =>{ :posts => @posts, :condition => false} %>

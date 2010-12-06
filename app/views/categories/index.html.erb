@@ -1,0 +1,31 @@
+<div id="naslov"><h1><%=h @area.title %></h1></div>
+<%=h @area.description %><br />
+<% if @topposts.size!=0%>
+	<div id="naslov"><h1 >TOP PONUDE</h1></div>
+	<%= render :partial => 'small_view', :locals =>{ :posts => @topposts, :condition => false} %>
+<% end %>
+<div id="naslov"><h1 >Spisak Kategorija</h1></div> 	
+<div>
+<% @categories.each do |category| %>
+	<div id="othercategories">
+		<%= link_to "<h3>#{category.title}</h3>", area_category_path(:area_id => category.area,:id => category) %>
+		<% if is_logged_in? %>
+		<%= link_to 'Edit', edit_area_category_path(:area_id => @area,:id => category) %>
+		<%= link_to 'Destroy', area_category_path(:area_id => @area,:id => category), :confirm => 'Are you sure?', :method => :delete %>
+	<% end %>	
+		</div>
+<% end %>
+</div>
+
+
+<div style="clear:both; "><hr />
+	<% if is_logged_in? %>
+		<%= link_to 'New category', new_area_category_path %> |
+		<%= link_to 'Edit Area', edit_area_path(@area) %> |
+	<% end %>
+	<%= link_to 'Nazad', areas_path %>
+</div>
+
+<br />
+<div id="naslov"><h1 >ZADNJE DODATI</h1></div>
+<%= render :partial => 'small_view', :locals => {:posts => @newwposts, :condition => false} %>

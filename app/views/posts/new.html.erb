@@ -1,0 +1,49 @@
+<h1>New post</h1>
+
+<% form_for(@post) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title, :value => params[:grapa] %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+   <p>
+    <%= f.label :category_id %><br />
+   <%= f.select :category_id,
+               Category.find(:all).collect {|c| [c.area.title + "/" + c.title , c.id] },
+                :selected => params[:category_id].to_i %> 
+  </p>
+    <p>
+    <%= f.label :top %><br />
+    <%= f.check_box :top %>
+  </p>
+    <p>
+    <%= f.label :Owner %><br />
+    <%= f.text_field :owner %>
+  </p>
+  <p>
+    <%= f.label :Phone1 %><br />
+    <%= f.text_field :phone1 %>
+  </p>
+  <p>
+    <%= f.label :Phone2 %><br />
+    <%= f.text_field :phone2 %>
+  </p>
+  <p>
+    <%= f.label :Place %><br />
+    <%= f.text_field :place %>
+  </p>
+  <p>
+    <%= f.label :Email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', posts_path %>

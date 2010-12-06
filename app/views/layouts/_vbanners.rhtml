@@ -1,0 +1,11 @@
+<% @vbanners = Vbanner.find_by_sql("SELECT * from vbanners ORDER BY RAND() LIMIT 4") %>
+  <% @vbanners.each do |vbanner| %>
+	<br /><br />
+	<%if vbanner.link!='' %>
+		<%=link_to(image_tag(vbanner.vimage.url, :border => 0, :width => '130'), vbanner.link)%>
+	<% else %>
+		<%= image_tag(vbanner.vimage.url, :border => 0, :width => '130') %>
+	<% end %>
+  <% end %>
+  
+                             

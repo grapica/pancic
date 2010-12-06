@@ -1,0 +1,11 @@
+		<ul class="sidemenu">						
+				<% if is_logged_in? %>
+					<li><%= link_to 'My Profile', edit_user_path(logged_in_user) %></li>
+					<li><%= link_to 'Logout', {:controller => 'account', :action => 'logout'},:method => :post %></li>
+					<li><%= link_to 'Vertical Banners',vbanners_path %></li>
+					<li><%= link_to 'Horizontal Banners',hbanners_path %></li>				
+					<li><%= link_to 'Kursna Lista', course_lists_path %></li>
+				<% else %>
+					<li><%= link_to '<span>Login</span>', :controller => 'account', :action => 'login' %></li>
+				<% end %>
+		</ul>

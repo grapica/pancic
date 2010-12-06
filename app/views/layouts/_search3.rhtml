@@ -1,0 +1,7 @@
+				<% form_tag posts_path, :method => 'get' do%>
+					<%= text_field_tag :search, params[:search], :value => "Search" %>
+					
+					<% categories = Category.find(:all).collect {|c| [c.area.title + "/" + c.title , c.id] } %>
+					<%= select_tag(:category_id, 
+					"<option value='0'>-select a cetegory-</option>" + options_for_select( categories ))%>
+ 				<% end %>

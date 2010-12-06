@@ -1,0 +1,21 @@
+<h1>Editing category</h1>
+
+<% form_for(:category, :url => area_category_path(:id => @category, :area_id => @category.area),
+            :html => { :method => :put }) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', area_category_path(:area_id => @category.area.id,:id => @category) %> |
+<%= link_to 'Back', area_categories_path %>

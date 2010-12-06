@@ -1,0 +1,22 @@
+<p>
+  <b>Name:</b>
+  <%=h @course_list.name %>
+</p>
+
+<p>
+  <b>Buy:</b>
+  <%=h @course_list.buy %>
+</p>
+
+<p>
+  <b>Sell:</b>
+  <%=h @course_list.sell %>
+</p>
+<p>
+  <b>Image:</b>
+  <%= image_tag @course_list.currency.url %>
+</p>
+
+
+<%= link_to 'Edit', edit_course_list_path(@course_list) %> |
+<%= link_to 'Back', course_lists_path %>

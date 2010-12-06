@@ -1,0 +1,11 @@
+<p>
+  <b>Link:</b>
+  <%=h @hbanner.link %>
+</p>
+<p>
+  <b>Banner:</b>
+  <%= image_tag @hbanner.himage.url %>
+</p>
+
+<%= link_to 'Edit', edit_hbanner_path(@hbanner) %> |
+<%= link_to 'Back', hbanners_path %>

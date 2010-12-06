@@ -1,0 +1,16 @@
+<h1>Editing vbanner</h1>
+
+<% form_for(@vbanner) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :link %><br />
+    <%= f.text_field :link %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @vbanner %> |
+<%= link_to 'Back', vbanners_path %>

@@ -1,0 +1,43 @@
+
+<div id="naslov"><h1 ><%= link_to  @category.area.title, area_path(:id => @category.area.id) %> - <%=h @category.title %></h1></div>
+
+ <%=h @category.description %>
+
+<% if @posts.size == 0%>
+	<p>U zadatoj kategoriji ne postoji nijedan oglas</p>
+<%else%>
+	<% if @posts_pages.page_count > 1 %>
+		<p class="pagination">Pages: <strong>
+			<%= pagination_links @posts_pages, :params => params %>
+		</strong></p>
+	<% end %>
+	
+<%= render :partial => 'small_view', :locals => {:posts => @posts, :condition => true} %>	
+<% end %>
+<% if @posts_pages.page_count > 1 %>
+		<p class="pagination">Pages: <strong>
+			<%= pagination_links @posts_pages, :params => params %>
+		</strong></p>
+	<% end %>
+	
+<div style="clear:both; ">
+<hr />
+<% if is_logged_in? %>
+	<%= link_to 'New post', new_post_path( :category_id => @category.id ) %>
+	<%= link_to 'Edit Category', edit_area_category_path(:area_id => @category.area.id,:id => @category) %> |
+<% end %>
+</div>
+<div id="naslov"><h1 >Ostale Kategorije</h1></div> 	
+<div>
+<% @categories.each do |category| %>
+<% if category.id!=@category.id%>
+	<div id="othercategories">
+		<%= link_to "<h3>#{category.title}</h3>", area_category_path(:area_id => category.area,:id => category) %>
+		</div>
+	<% end %>
+<% end %>
+</div>
+<div style="clear:both; ">
+<hr />
+<%= link_to 'Nazad', area_path(:id => @category.area.id) %>
+</div>

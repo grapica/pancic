@@ -1,0 +1,41 @@
+ <h1>Kursna Lista</h1>
+ <div class="art-block">
+                                <div class="art-block-body">
+                                            <div class="art-blockheader">
+                                                 <div class="t">KURSNA LISTA AGENCIJE PANCIC</div>
+                                            </div>
+                                            <div class="art-blockcontent">
+                                                <div class="art-blockcontent-tl"></div>
+                                                <div class="art-blockcontent-tr"></div>
+                                                <div class="art-blockcontent-bl"></div>
+                                                <div class="art-blockcontent-br"></div>
+                                                <div class="art-blockcontent-tc"></div>
+                                                <div class="art-blockcontent-bc"></div>
+                                                <div class="art-blockcontent-cl"></div>
+                                                <div class="art-blockcontent-cr"></div>
+                                                <div class="art-blockcontent-cc"></div>
+                                                <div class="art-blockcontent-body">
+                                            <!-- block-content -->
+											<table>
+												<tr>
+												<td>Oznaka Valute</td>
+												<td>Prodajni Kurs</td>
+												<td>Kupovni Kurs</td>
+												</tr>
+												<%@course_lists = CourseList.all%>
+											<% @course_lists.each do |course_list| %>
+												<tr>
+													<td><%= image_tag(course_list.currency.url, :width => '16') %><%=h course_list.name %></td>
+													<td><b><%=h course_list.buy %></b></td>
+													<td><b><%=h course_list.sell %></b></td>
+												</tr>
+											<% end %>
+											</table>
+                                            <!-- /block-content -->
+                                            
+                                            		<div class="cleared"></div>
+                                                </div>
+                                            </div>
+                            		<div class="cleared"></div>
+                                </div>
+                            </div>

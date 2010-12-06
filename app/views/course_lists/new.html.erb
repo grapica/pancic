@@ -1,0 +1,28 @@
+<h1>New course_list</h1>
+
+<% form_for(@course_list, :html => { :multipart => true }) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :buy %><br />
+    <%= f.text_field :buy %>
+  </p>
+  <p>
+    <%= f.label :sell %><br />
+    <%= f.text_field :sell %>
+  </p>
+    <p>
+    <%= f.label :currency %><br />
+    <%= f.file_field :currency %>
+  </p>
+
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', course_lists_path %>

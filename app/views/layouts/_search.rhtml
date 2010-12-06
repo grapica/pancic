@@ -1,0 +1,34 @@
+ <h1>PRETRAZIVANJE</h1>
+ <div class="art-block">
+                                <div class="art-block-body">
+                                            <div class="art-blockheader">
+                                                 <div class="t">PRETRAZIVANJE</div>
+                                            </div>
+                                            <div class="art-blockcontent">
+                                                <div class="art-blockcontent-tl"></div>
+                                                <div class="art-blockcontent-tr"></div>
+                                                <div class="art-blockcontent-bl"></div>
+                                                <div class="art-blockcontent-br"></div>
+                                                <div class="art-blockcontent-tc"></div>
+                                                <div class="art-blockcontent-bc"></div>
+                                                <div class="art-blockcontent-cl"></div>
+                                                <div class="art-blockcontent-cr"></div>
+                                                <div class="art-blockcontent-cc"></div>
+                                                <div class="art-blockcontent-body">
+                                            <!-- block-content -->
+											
+											<% form_tag posts_path, :method => 'get', :class => "searchform2" do%>
+												<%=label_tag :"Klju&#269;na re&#269;:"%><%= text_field_tag :search, params[:search], :value => "Search" %>				
+												<% categories = Category.find(:all).collect {|c| [c.area.title + " - " + c.title , c.id] } %>
+												<%=label_tag :"Kategorija:"%><%= select_tag(:category_id, 
+												"<option value='0'>-izaberite kategoriju-</option>" + options_for_select( categories ))%>
+												<br /><br /><%= submit_tag ' Pretrazi ' %>
+											<% end %>
+                                            <!-- /block-content -->
+                                            
+                                            		<div class="cleared"></div>
+                                                </div>
+                                            </div>
+                            		<div class="cleared"></div>
+                                </div>
+                            </div>

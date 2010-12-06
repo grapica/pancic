@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  buy: 1.5
+  sell: 1.5
+
+two:
+  name: MyString
+  buy: 1.5
+  sell: 1.5

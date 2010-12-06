@@ -1,0 +1,27 @@
+<h1>Listing course_lists</h1>
+
+<table>
+  <tr>
+    <th>Naziv Valute</th>
+    <th>Kupovni Kurs</th>
+    <th>Prodajni Kurs</th>
+  </tr>
+
+<% @course_lists.each do |course_list| %>
+  <tr>
+    <td><%= image_tag(course_list.currency.url, :width => '16') %><%=h course_list.name %></td>
+    <td><%=h course_list.buy %></td>
+    <td><%=h course_list.sell %></td>
+	<% if is_logged_in? %>
+		<td><%= link_to 'Show', course_list %></td>
+		<td><%= link_to 'Edit', edit_course_list_path(course_list) %></td>
+		<td><%= link_to 'Destroy', course_list, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<% if is_logged_in? %>
+	<%= link_to 'New course_list', new_course_list_path %>
+<% end %>

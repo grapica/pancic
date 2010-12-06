@@ -1,0 +1,20 @@
+
+<% prom=1 %>
+<% @questions.each do |question| %>
+
+    <h3><%=h prom %>. <%=h question.issue %></h3><br /><br />
+    <%= question.answer.gsub("\n", "<br />") %><br />
+	<% if is_logged_in? %>
+		<%= link_to 'Show', question %>
+		<%= link_to 'Edit', edit_question_path(question) %>
+		<%= link_to 'Destroy', question, :confirm => 'Are you sure?', :method => :delete %>
+	<% end %>
+	<%prom= prom+1%>
+<br /><br /><br />
+<% end %>
+
+
+<br />
+<% if is_logged_in? %>
+	<%= link_to 'New question', new_question_path %>
+<% end %>

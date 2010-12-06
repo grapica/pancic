@@ -1,0 +1,35 @@
+<ul>
+  <li><%= link_to 'Home', '/' %></li>
+  <li><%= link_to 'Top Ponude', posts_path(:top => 1) %></li>
+  <li><%= link_to 'Kursna Lista', course_lists_path %></li>
+   <li><%= link_to 'Korisna Pitanja', questions_path %></li>
+    <li><%= link_to 'Kontakt', :controller => "contact", :action=> "index" %></li>
+  <% @areas = Area.all %>
+  <% @areas.each do |area| %>
+	<% if area.menu == true %>
+		<li><%=link_to area.title, area %></li>
+	<% end %>
+  <% end %>
+    <% if is_logged_in? %>
+    <li>Logged in as: <i><%= logged_in_user.username %></i></li>
+	   <li><%= link_to 'My Profile',
+                   edit_user_path(logged_in_user) %></li>
+    <li><%= link_to 'Logout', {:controller => 'account', :action => 'logout'},
+                              :method => :post %></li>
+	<li><%= link_to 'Vertical Banners',vbanners_path %></li>
+	<li><%= link_to 'Horizontal Banners',hbanners_path %></li>
+	  <% else %>
+    <li><%= link_to 'Login', :controller => 'account', :action => 'login' %></li>
+  <% end %>        
+  <% @vbanners = Vbanner.find_by_sql("SELECT * from vbanners ORDER BY RAND() LIMIT 4") %>
+  <% @vbanners.each do |vbanner| %>
+	<br /><br />
+	<%if vbanner.link!='' %>
+		<%=link_to(image_tag(vbanner.vimage.url, :border => 0, :width => '130'), vbanner.link)%>
+	<% else %>
+		<%= image_tag(vbanner.vimage.url, :border => 0, :width => '130') %>
+	<% end %>
+  <% end %>
+
+</ul>
+</ul>

@@ -1,0 +1,22 @@
+<h1>Listing post_images</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Post</th>
+  </tr>
+
+<% @post_images.each do |post_image| %>
+  <tr>
+    <td><%=h post_image.title %></td>
+    <td><%=h post_image.post_id %></td>
+    <td><%= link_to 'Show', post_post_image_path(:id => post_image) %></td>
+    <td><%= link_to 'Edit', edit_post_post_image_path(:id => post_image) %></td>
+    <td><%= link_to 'Destroy', post_post_image_path(:id => post_image), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New post_image', new_post_post_image_path %>

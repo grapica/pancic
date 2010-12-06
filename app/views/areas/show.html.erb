@@ -1,0 +1,20 @@
+<div id="naslov"><h1><%=h @area.title %></h1></div>
+<%=h @area.description %>
+<p>
+  <b>Title:</b>
+  <%=h @area.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @area.description %>
+</p>
+
+<p>
+  <b>Menu:</b>
+  <%=h @area.menu %>
+</p>
+
+
+<%= link_to 'Edit', edit_area_path(@area) %> |
+<%= link_to 'Back', areas_path %>

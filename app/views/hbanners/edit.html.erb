@@ -1,0 +1,16 @@
+<h1>Editing hbanner</h1>
+
+<% form_for(@hbanner) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :link %><br />
+    <%= f.text_field :link %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @hbanner %> |
+<%= link_to 'Back', hbanners_path %>
